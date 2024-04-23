@@ -28,10 +28,11 @@ public class App {
                         System.out.println("Erreur ! Patient introuvable...");
                     } else {
                         Rdv rendezVous = rdvVue.instanceRdv(scanner);
-                        if (rdvService.saveRdv(rendezVous)) {
+                        if (rdvVue.findRdv(rendezVous.getId()-1, rdvService.getTabRdv()) == null) {
                             System.out.println("Le rendez-vous a bien été enregistré !");
                             patient1.addRdv(rendezVous);
                             rendezVous.addPatient(patient1);
+                            rdvService.saveRdv(rendezVous)
                         } else {
                             System.out.println("Erreur ! Le rendez-vous ne peut être enregistré...");
                         }
